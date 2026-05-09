@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "display_name": "图文转述回退代理",
+    "short_desc": "为 AstrBot 图文转述提供多模型自动回退链，每级可独立设置超时",
+    "desc": "启动本地 HTTP 代理服务器，在 AstrBot 与识图模型之间充当中间层。支持配置多级回退链，主模型失败后依次尝试备用模型，每级可独立设置超时时间。解决 default_image_caption_provider_id 不支持 fallback 链的问题。"
+  },
+  "config": {
+    "primary_api_base": {
+      "description": "主模型 API 地址",
+      "hint": "首选识图模型的 OpenAI 兼容 API 端点，例如本地 LM Studio http://localhost:1234/v1"
+    },
+    "primary_api_key": {
+      "description": "主模型 API Key",
+      "hint": "主模型的 API Key，LM Studio 默认使用 lm-studio"
+    },
+    "primary_model": {
+      "description": "主模型名称",
+      "hint": "主模型的完整模型 ID，例如 qwen/qwen2.5-vl-7b"
+    },
+    "primary_timeout": {
+      "description": "主模型超时（秒）",
+      "hint": "主模型的连接超时。本地模型建议设 3-5s 以便快速触发回退；云端 API 建议设 10-15s 以应对网络波动"
+    },
+    "fallback_chain": {
+      "description": "备用模型链（JSON 数组）",
+      "hint": "JSON 数组，主模型失败后按顺序依次尝试。每项需指定 api_base、api_key、model、timeout（秒）。可配置任意多个备用模型。timeout 建议云端 API 设 60-120s"
+    },
+    "proxy_port": {
+      "description": "代理端口",
+      "hint": "本地代理服务器监听端口，需在 AstrBot 中添加对应的 provider_source 指向此端口"
+    },
+    "proxy_host": {
+      "description": "代理监听地址",
+      "hint": "建议使用 127.0.0.1 仅监听本地。Docker 等跨容器场景可改为 0.0.0.0"
+    }
+  }
+}

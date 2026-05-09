@@ -1,0 +1,44 @@
+{
+  "primary_api_base": {
+    "description": "主模型 API 地址",
+    "type": "string",
+    "default": "http://localhost:1234/v1",
+    "hint": "首选识图模型的 OpenAI 兼容 API 端点，例如 LM Studio 默认地址"
+  },
+  "primary_api_key": {
+    "description": "主模型 API Key",
+    "type": "string",
+    "default": "lm-studio",
+    "hint": "主模型的 API Key，LM Studio 默认使用 lm-studio"
+  },
+  "primary_model": {
+    "description": "主模型名称",
+    "type": "string",
+    "default": "qwen/qwen2.5-vl-7b",
+    "hint": "主模型的完整模型 ID，例如 qwen/qwen2.5-vl-7b"
+  },
+  "primary_timeout": {
+    "description": "主模型超时（秒）",
+    "type": "int",
+    "default": 5,
+    "hint": "主模型连接超时，设小可快速触发回退。本地模型建议 3-5s，云端 API 建议 10-15s"
+  },
+  "fallback_chain": {
+    "description": "备用模型链（JSON）",
+    "type": "string",
+    "default": "[{\"api_base\": \"https://api.siliconflow.cn/v1\", \"api_key\": \"\", \"model\": \"Qwen/Qwen3-VL-32B-Instruct\", \"timeout\": 60}]",
+    "hint": "JSON 数组，主模型失败后按顺序尝试。每个模型需 api_base、api_key、model、timeout（秒）。可配置任意多个，按优先级从上到下排列。timeout 建议云端 API 设 60-120s"
+  },
+  "proxy_port": {
+    "description": "代理端口",
+    "type": "int",
+    "default": 11435,
+    "hint": "本地代理服务器监听端口，需在 AstrBot 中添加对应的 provider_source 指向此端口"
+  },
+  "proxy_host": {
+    "description": "代理监听地址",
+    "type": "string",
+    "default": "127.0.0.1",
+    "hint": "建议使用 127.0.0.1 仅监听本地。Docker 等跨容器场景可改为 0.0.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+name: astrbot_plugin_image_caption_fallback
+display_name: 图文转述回退代理
+version: 1.2.0
+description: 为 AstrBot 的图文转述提供多级回退链代理。支持 JSON 配置任意级回退，每级独立设置超时。主模型不可达时按优先级依次尝试备用模型。
+short_desc: 图文转述多模型回退代理
+author: Heluo0991
+repo: https://github.com/Heluo0991/astrbot_plugin_image_caption_fallback
+
+support_platforms: []
+
+astrbot_version: ">=4.23.0"

@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "display_name": "Image Caption Fallback Proxy",
+    "short_desc": "Multi-model auto-fallback chain with per-model timeout for AstrBot image captioning",
+    "desc": "Runs a local HTTP proxy between AstrBot and vision models. Supports configurable multi-level fallback chains with independent timeouts per model. Solves the issue that default_image_caption_provider_id only accepts a single model."
+  },
+  "config": {
+    "primary_api_base": {
+      "description": "Primary API Base",
+      "hint": "OpenAI-compatible API endpoint for the primary vision model, e.g. http://localhost:1234/v1"
+    },
+    "primary_api_key": {
+      "description": "Primary API Key",
+      "hint": "API key for the primary model. LM Studio defaults to lm-studio"
+    },
+    "primary_model": {
+      "description": "Primary Model Name",
+      "hint": "Full model ID, e.g. qwen/qwen2.5-vl-7b"
+    },
+    "primary_timeout": {
+      "description": "Primary Timeout (s)",
+      "hint": "Connection timeout for the primary model. Use 3-5s for local models (fast failover); use 10-15s for cloud APIs to tolerate network latency"
+    },
+    "fallback_chain": {
+      "description": "Fallback Chain (JSON array)",
+      "hint": "JSON array of fallback models tried in order after the primary fails. Each entry requires api_base, api_key, model, and timeout (seconds). Supports any number of fallback models. Suggested timeout: 60-120s for cloud APIs"
+    },
+    "proxy_port": {
+      "description": "Proxy Port",
+      "hint": "Port the local proxy listens on. Add a corresponding provider_source in AstrBot pointing to this port"
+    },
+    "proxy_host": {
+      "description": "Proxy Host",
+      "hint": "Use 127.0.0.1 for local-only. Use 0.0.0.0 for Docker/cross-container scenarios"
+    }
+  }
+}
